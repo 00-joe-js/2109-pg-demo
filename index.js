@@ -16,20 +16,19 @@ const run = async () => {
 
         const insertNewDogSQL = `INSERT INTO dogs(name, breed) VALUES($1, $2)`;
 
-        await client.query(insertNewDogSQL, ["Penny", "Havanese"]);
-        await client.query(insertNewDogSQL, ["Loaf", "Corgi"]);
-        await client.query(insertNewDogSQL, ["Boomer", "Yellow Labrador"]);
-
+        await client.query(insertNewDogSQL, ["Atlas", "Labrador"]);
+        await client.query(insertNewDogSQL, ["Zeus", "Husky"]);
+        await client.query(insertNewDogSQL, ["Copper", "Australian Shepherd"]);
     };
 
 
     try {
         seedNewData();
+        const dogs = await client.query("SELECT * FROM dogs");
+        console.log(dogs.rows);
     } catch (e) {
         console.log(e)
     }
-    
-    
 
 };
 run();
